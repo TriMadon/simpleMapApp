@@ -1,6 +1,6 @@
 # simpleMapApp
  
-To start the application, open a terminal in the main directory and type: 
+To start the application, simply use docker by opening a terminal in the main directory and type: 
 ```
 docker-compose up
 ```
