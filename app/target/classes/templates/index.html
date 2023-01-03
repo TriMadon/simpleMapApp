@@ -11,30 +11,42 @@
   <title>Simple Searchable Map</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
+
 <body>
 <div id="map-container">
   <div id="map">
     <script>
+      const lon = [[${lon}]];
+      const lat = [[${lat}]];
       mapboxgl.accessToken = 'pk.eyJ1IjoidHJpLW1hZG9uIiwiYSI6ImNsY2Y3ZTZwbDA2M2czb3BrMnczcDR0dzAifQ.Ep9gI0wtSY5DGwftMNbV4Q';
       const map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v12',
-        center: [-74.5, 40],
-        zoom: 9
+        center: [lon, lat],
+        zoom: 15
       });
     </script>
   </div>
-  <form id="search-container" action="/search" method="post" th:object="${searchForm}">
+
+  <form id="search-container" th:action="@{/search}" method="post">
     <input type="text" id="search-box" placeholder="Enter a location" th:name="enteredLocation">
-    <button id="search-button" type="submit" class="btn btn-primary" >
-      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" th:if="${loading}"></span>
-      Search
+    <button id="search-button" type="submit" class="btn btn-primary" onclick="toggleSearchTextAndLoadingSpinner()">
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinner" th:style="${display}" th:with="display='display:none'"> </span>
+      <p id="search-text" th:style="${display}" th:with="display='display:block'">Search</p>
     </button>
+    <script>
+      function toggleSearchTextAndLoadingSpinner() {
+        document.getElementById("spinner").style.display = "block";
+        document.getElementById("search-text").style.display = "none";
+      }
+    </script>
   </form>
-  <div id="error-message" th:if="${errorExists}" th:switch="${errorMessage}">
-    <p th:case="404">Error: Invalid search query or non-existent location</p>
-    <p th:case="*">Error: Could not connect to API</p>
+
+  <div id="error-message" th:if="${errorExists}">
+    <p th:text="${errorMessage}"></p>
+<!--    <p th:case="*">Error: Could not connect to API</p>-->
   </div>
+
 </div>
 </body>
 </html>

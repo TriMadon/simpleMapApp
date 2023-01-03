@@ -1,8 +1,10 @@
-package service;
+package com.simple_map.app.service;
 
-import model.Coordinates;
+import com.simple_map.app.model.Coordinates;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Optional;
 
 
 @Service
@@ -14,11 +16,11 @@ public class PositionStackService implements CoordinateService{
     private static final String GET_LAT_AND_LONG_ONLY = "&fields=results.latitude,results.longitude";
     private static final String LIMIT_RESULTS = "&limit=1";
 
-    
+
     @Override
-    public Coordinates getCoordinatesByQuery(String query) {
-        RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(getUrlForQuery(query), Coordinates.class);
+    public Optional<Coordinates> getCoordinatesByQuery(String query) {
+        //To be implemented
+        return Optional.empty();
     }
 
     private String getUrlForQuery(String query){

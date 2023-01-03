@@ -48,18 +48,22 @@ body {
     border: 1px solid #4caf50;
     border-radius: 0 4px 4px 0;
     cursor: pointer;
+    align-items: center;
 }
 
 #error-message {
     background-color: #f44336;
     color: #fff;
-    padding: 10px;
+    padding: 10px 20px;
+    margin-top: 20px;
     border-radius: 4px;
     font-size: 16px;
+    text-align: center;
 }
 
-#loading-spinner {
+#spinner {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 35%;
 }

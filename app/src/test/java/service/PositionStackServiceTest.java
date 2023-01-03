@@ -1,8 +1,7 @@
 package service;
 
+import com.simple_map.app.service.PositionStackService;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class PositionStackServiceTest {
 
