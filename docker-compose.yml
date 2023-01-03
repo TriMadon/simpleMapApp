@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  simple-map-app:
+    image: simple-map/app
+    build: ./app
+    container_name: simple-map-app
+    expose:
+      - "8080"
+    ports: 
+      - "8080:8080"
